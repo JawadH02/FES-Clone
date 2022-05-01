@@ -1,10 +1,14 @@
 import Image from 'next/image'
 import useSidebar from '../hooks/useSidebar'
 import { Burger } from '@mantine/core'
+import { ModalAuth } from '../components/index'
+import { useState } from 'react'
 
 export const Nav = () => {
   const { handleSidebar, sidebar } = useSidebar()
-  
+  const [modal, setModal] = useState(false)
+
+  const handleModal = () => setModal(!modal)
 
   return (
     <nav className="border-b bg-[#FAF9FA]">
@@ -23,12 +27,19 @@ export const Nav = () => {
       </div>
       {/* right */}
       <div className="flex items-center space-x-3 text-sm">
-        <button className="navBtn hidden bg-[#EDEDF0] text-[#242424] hover:bg-gray-200 sm:inline-flex">
+        <button
+          className="navBtn hidden bg-[#EDEDF0] text-[#242424] hover:bg-gray-200 sm:inline-flex"
+          onClick={handleModal}
+        >
           Login
         </button>
-        <button className="navBtn inline-flex bg-[#7645d9] text-[#FFF] hover:opacity-60">
+        <button
+          className="navBtn inline-flex bg-[#7645d9] text-[#FFF] hover:opacity-60"
+          onClick={handleModal}
+        >
           Register
         </button>
+        <ModalAuth modal={modal} handleModal={handleModal} />
       </div>
     </nav>
   )

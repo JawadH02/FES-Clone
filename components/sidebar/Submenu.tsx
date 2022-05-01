@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import React, { useState } from 'react'
-import useSidebar from '../../hooks/useSidebar'
 import { NavSections } from '../../typings'
 
 interface Props {
@@ -20,7 +19,7 @@ export const Submenu = ({ section }: Props) => {
               {section.title === 'Start Here' ? (
                 <img className="h-4" src="/assets/div.png" alt="" />
               ) : (
-                <section.icon className="opacity-60 text-[18px]" />
+                <section.icon className="text-[18px] opacity-60" />
               )}
               <div className="flex w-full items-center justify-between">
                 <span className="text-[16px]">{section.title}</span>
@@ -35,7 +34,7 @@ export const Submenu = ({ section }: Props) => {
             <div>
               <Link href={`${section.path}`}>
                 <a className="sidebarLink" onClick={showSubnav}>
-                  <section.icon className="opacity-60 text-lg" />
+                  <section.icon className="text-lg opacity-60" />
                   <span className="text-[16px]">{section.title}</span>
                 </a>
               </Link>
@@ -48,9 +47,7 @@ export const Submenu = ({ section }: Props) => {
                   <li key={index}>
                     {!subSection.disabled ? (
                       <Link href={`${subSection?.path}`}>
-                        <a
-                          className="sidebarLink text-[16px]"
-                        >
+                        <a className="sidebarLink !py-6 text-[16px] text-black opacity-80">
                           {subSection.title}
                         </a>
                       </Link>
