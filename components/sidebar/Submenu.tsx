@@ -9,7 +9,6 @@ interface Props {
 
 export const Submenu = ({ section }: Props) => {
   const [dropdown, setDropdown] = useState(false)
-  const { handleSidebar } = useSidebar()
 
   const showSubnav = () => setDropdown(!dropdown)
   return (
@@ -21,7 +20,7 @@ export const Submenu = ({ section }: Props) => {
               {section.title === 'Start Here' ? (
                 <img className="h-4" src="/assets/div.png" alt="" />
               ) : (
-                <section.icon />
+                <section.icon className="opacity-60 text-[18px]" />
               )}
               <div className="flex w-full items-center justify-between">
                 <span className="text-[16px]">{section.title}</span>
@@ -33,10 +32,10 @@ export const Submenu = ({ section }: Props) => {
               </div>
             </a>
           ) : (
-            <div onClick={handleSidebar}>
+            <div>
               <Link href={`${section.path}`}>
                 <a className="sidebarLink" onClick={showSubnav}>
-                  <section.icon />
+                  <section.icon className="opacity-60 text-lg" />
                   <span className="text-[16px]">{section.title}</span>
                 </a>
               </Link>
@@ -51,7 +50,6 @@ export const Submenu = ({ section }: Props) => {
                       <Link href={`${subSection?.path}`}>
                         <a
                           className="sidebarLink text-[16px]"
-                          onClick={handleSidebar}
                         >
                           {subSection.title}
                         </a>

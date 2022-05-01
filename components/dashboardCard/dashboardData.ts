@@ -254,7 +254,7 @@ export const cardInfo = [
       },
       {
         link: 'Maximum Character',
-        linkTo: '/interviews/javascript/stringifyid',
+        linkTo: '/interviews/javascript/maxcharacter',
         icon: FaCrown,
       },
       {

@@ -9,7 +9,7 @@ import {
 import { MdWebStories } from 'react-icons/md'
 import { SiJavascript } from 'react-icons/si'
 import { TiTabsOutline } from 'react-icons/ti'
-import { GiPayMoney } from 'react-icons/gi'
+import { GiReceiveMoney } from 'react-icons/gi'
 
 export const sidebarData = [
   {
@@ -249,7 +249,7 @@ export const sidebarData = [
   {
     title: 'Job Application',
     path: '/application',
-    icon: GiPayMoney,
+    icon: GiReceiveMoney,
     iconClosed: BsChevronDown,
     iconOpened: BsChevronUp,
     subNav: [
@@ -320,7 +320,7 @@ export const sidebarData = [
       },
       {
         title: 'Max Character',
-        path: '/interviews/javascript/stringifyid',
+        path: '/interviews/javascript/maxcharacter',
       },
       {
         title: 'Anagrams',
