@@ -55,6 +55,7 @@ export const Nav = () => {
           modal={modal}
           handleModal={handleModal}
           loginBtn={loginBtn}
+          setModal={setModal}
         />
       </div>
     </nav>

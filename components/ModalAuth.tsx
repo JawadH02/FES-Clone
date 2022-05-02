@@ -7,6 +7,7 @@ interface Props {
   modal: boolean
   handleModal: (e: React.MouseEvent<HTMLButtonElement>) => void
   loginBtn: boolean
+  setModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 interface Inputs {
@@ -15,7 +16,12 @@ interface Inputs {
   name?: string
 }
 
-export const ModalAuth = ({ modal, handleModal, loginBtn }: Props) => {
+export const ModalAuth = ({
+  modal,
+  handleModal,
+  loginBtn,
+  setModal,
+}: Props) => {
   const {
     handleSubmit,
     register,
@@ -33,7 +39,6 @@ export const ModalAuth = ({ modal, handleModal, loginBtn }: Props) => {
     password,
   }) => {
     // console.log(name)
-
     // console.log(email)
     // console.log(password)
   }
@@ -41,7 +46,9 @@ export const ModalAuth = ({ modal, handleModal, loginBtn }: Props) => {
   return (
     <MuiModal
       open={modal}
-      onClose={(_, reason) => reason !== 'backdropClick' && handleModal(e)}
+      onClose={(event: {}, reason: 'backdropClick') =>
+        !reason && setModal(!modal)
+      }
       className={`relative !top-40 left-0 right-0 z-50 mx-auto w-full max-w-[825px] overflow-hidden overflow-y-scroll rounded-md md:px-4 lg:px-0 ${
         modal && '!h-screen overflow-hidden'
       }`}
