@@ -7,8 +7,18 @@ import { useState } from 'react'
 export const Nav = () => {
   const { handleSidebar, sidebar } = useSidebar()
   const [modal, setModal] = useState(false)
+  const [loginBtn, setLoginBtn] = useState(false)
 
-  const handleModal = () => setModal(!modal)
+  const handleModal = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const button = (e.target as HTMLInputElement).value
+    button !== 'SignUp' && setModal(!modal)
+
+    if (button === 'Login' || button === 'SignUp') {
+      setLoginBtn(true)
+    } else {
+      setLoginBtn(false)
+    }
+  }
 
   return (
     <nav className="border-b bg-[#FAF9FA]">
@@ -28,18 +38,24 @@ export const Nav = () => {
       {/* right */}
       <div className="flex items-center space-x-3 text-sm">
         <button
+          value="Login"
           className="navBtn hidden bg-[#EDEDF0] text-[#242424] hover:bg-gray-200 sm:inline-flex"
-          onClick={handleModal}
+          onClick={(e) => handleModal(e)}
         >
           Login
         </button>
         <button
+          value="Register"
           className="navBtn inline-flex bg-[#7645d9] text-[#FFF] hover:opacity-60"
-          onClick={handleModal}
+          onClick={(e) => handleModal(e)}
         >
           Register
         </button>
-        <ModalAuth modal={modal} handleModal={handleModal} />
+        <ModalAuth
+          modal={modal}
+          handleModal={handleModal}
+          loginBtn={loginBtn}
+        />
       </div>
     </nav>
   )
