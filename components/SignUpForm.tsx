@@ -2,7 +2,8 @@ import { TextInput, PasswordInput } from '@mantine/core'
 import React, { useCallback, useContext, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { LoginForm } from '../components/index'
-import { ModalContext } from './Nav'
+import { ModalContext } from '../context/ModalContext'
+import useAuth from '../hooks/useAuth'
 
 interface Inputs {
   email: string
@@ -11,26 +12,25 @@ interface Inputs {
 }
 
 export const SignUpForm = () => {
+  const [registerUser, setRegisterUser] = useState(false)
+  const { componentState, setComponentState, setModal } = useContext(ModalContext)
+  const { signUp } = useAuth()
+
   const {
     handleSubmit,
     register,
+    reset,
     formState: { errors },
   } = useForm<Inputs>()
-  const { componentState, setComponentState } = useContext(ModalContext)
 
-  const onSignInSubmit: SubmitHandler<Inputs> = ({ email, password }) => {
-    // console.log(email)
-    // console.log(password)
-  }
-
-  const onRegisterSubmit: SubmitHandler<Inputs> = ({
+  const onRegisterSubmit: SubmitHandler<Inputs> = async ({
     name,
     email,
     password,
   }) => {
-    // console.log(name)
-    // console.log(email)
-    // console.log(password)
+    if (registerUser) await signUp(email, password)
+    setModal(prevState => !prevState)
+    reset()
   }
 
   const handleSignupClick = useCallback(() => {
@@ -38,7 +38,7 @@ export const SignUpForm = () => {
   }, [componentState])
 
   return (
-    <div className='space-y-2'>
+    <div className="space-y-2">
       <h1 className="text-2xl font-semibold">Create your account</h1>
       <h3 className="text-sm text-gray-600">
         We'll have you coding in no time.
@@ -59,7 +59,8 @@ export const SignUpForm = () => {
           {...register('password', { required: true })}
           placeholder="Password"
         />
-        <button className="navBtn flex !w-full cursor-not-allowed justify-center bg-[#7645d9] !py-2 text-sm font-semibold text-[#FFF] hover:opacity-60">
+        <button className="navBtn flex !w-full justify-center bg-[#7645d9] !py-2 text-sm font-semibold text-[#FFF] hover:opacity-60"
+        onClick={() => setRegisterUser(true)}>
           Get Started!
         </button>
       </form>

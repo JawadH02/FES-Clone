@@ -2,40 +2,40 @@ import Image from 'next/image'
 import useSidebar from '../hooks/useSidebar'
 import { Burger } from '@mantine/core'
 import { ModalAuth, LoginForm, SignUpForm } from '../components/index'
-import { useContext, useState } from 'react'
+import { useCallback, useContext, useState } from 'react'
+import Avatar from '@mui/material/Avatar'
+import toast, { Toaster } from 'react-hot-toast'
 
 import MuiModal from '@mui/material/Modal'
 import { XIcon } from '@heroicons/react/outline'
-import { createContext } from 'react'
-
-interface ModalContextProps {
-  componentState: React.ReactNode
-  setComponentState: React.Dispatch<React.SetStateAction<React.ReactNode>>
-}
-
-export const ModalContext = createContext<ModalContextProps>({
-  componentState: null,
-  setComponentState: () => {},
-})
+import { ModalContext } from '../context/ModalContext'
+import useAuth from '../hooks/useAuth'
+import Fade from '@mui/material/Fade'
+import { BsFillPersonFill } from 'react-icons/bs'
+import { FiLogOut } from 'react-icons/fi'
 
 export const Nav = () => {
-  const [modal, setModal] = useState(false)
   const { sidebar, handleSidebar } = useSidebar()
-  const { componentState, setComponentState } = useContext(ModalContext)
-
-  const toggleSignUp = () => {
-    setModal((prevState) => !prevState)
-    setComponentState(<SignUpForm />)
-  }
+  const { user, logout } = useAuth()
+  const [accountModal, setAccountModal] = useState(false)
+  const { componentState, setComponentState, modal, setModal, toggleSignUp } =
+    useContext(ModalContext)
 
   const toggleSignIn = () => {
     setModal((prevState) => !prevState)
     setComponentState(<LoginForm />)
   }
 
+  const handleLogout = () => {
+    logout()
+    toast.success('You have successfully logged out', { duration: 1500 })
+    setAccountModal((prevState) => !prevState)
+  }
+
   return (
     <nav className="border-b bg-[#FAF9FA]">
       {/* left */}
+      <Toaster position="top-right" />
       <div className="flex items-center space-x-2 sm:space-x-6">
         <Burger
           className="mb-1 h-6 cursor-pointer font-bold transition duration-300 hover:opacity-60"
@@ -50,22 +50,56 @@ export const Nav = () => {
       </div>
       {/* right */}
       <div className="flex items-center space-x-3 text-sm">
-        <button
-          className="navBtn hidden bg-[#EDEDF0] text-[#242424] hover:bg-gray-200 sm:inline-flex"
-          onClick={toggleSignIn}
-        >
-          Login
-        </button>
-        <button
-          className="navBtn inline-flex bg-[#7645d9] text-[#FFF] hover:opacity-60"
-          onClick={toggleSignUp}
-        >
-          Register
-        </button>
-        <ModalAuth modal={modal}>
+        {!user ? (
+          <>
+            <button
+              className="navBtn hidden bg-[#EDEDF0] text-[#242424] hover:bg-gray-200 sm:inline-flex"
+              onClick={toggleSignIn}
+            >
+              Login
+            </button>
+            <button
+              className="navBtn inline-flex bg-[#7645d9] text-[#FFF] hover:opacity-60"
+              onClick={toggleSignUp}
+            >
+              Register
+            </button>
+          </>
+        ) : (
+          <div>
+            <Avatar
+              onClick={() => setAccountModal((prevState) => !prevState)}
+              className="cursor-pointer"
+              sx={{ bgcolor: '#7545D9' }}
+            >
+              {user.email?.charAt(0)}
+            </Avatar>
+            <ModalAuth open={accountModal}>
+              <div className={`opacity-0 ${accountModal ? 'opacity-100' : ''}`}>
+                <Fade in={accountModal}>
+                  <div className="accountModal">
+                    <button className="accountButton">
+                      <div className="accountModalSection group">
+                        <BsFillPersonFill className="accountModalIcon" />
+                        <div className="text-[16px]">Account</div>
+                      </div>
+                    </button>
+                    <button className="accountButton" onClick={handleLogout}>
+                      <div className="accountModalSection group">
+                        <FiLogOut className="accountModalIcon" />
+                        <div className="text-[16px]">Logout</div>
+                      </div>
+                    </button>
+                  </div>
+                </Fade>
+              </div>
+            </ModalAuth>
+          </div>
+        )}
+        <ModalAuth open={modal}>
           <MuiModal
             open={modal}
-            onClose={(event: {}, reason: 'backdropClick') => !reason}
+            onClose={(_, reason: 'backdropClick') => !reason}
             className={`relative !top-40 left-0 right-0 z-50 mx-auto w-full max-w-[825px] overflow-hidden overflow-y-scroll rounded-md md:px-4 lg:px-0 ${
               modal && '!h-screen overflow-hidden'
             }`}

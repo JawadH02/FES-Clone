@@ -1,6 +1,11 @@
 import ReactPlayer from 'react-player/lazy'
 import { FaDiscord, FaAngleRight } from 'react-icons/fa'
 import Link from 'next/link'
+import useAuth from '../../hooks/useAuth'
+import { useRouter } from 'next/router'
+import { useContext } from 'react'
+import { ModalContext } from '../../context/ModalContext'
+import { sidebarData } from '../sidebar/sidebarData'
 
 interface Props {
   title: string
@@ -8,6 +13,9 @@ interface Props {
 }
 
 export const Display = ({ title, description }: Props) => {
+  const { user } = useAuth()
+  const { toggleSignUp } = useContext(ModalContext)
+  const router = useRouter()
 
   return (
     <div className="mx-auto mb-4 flex w-full max-w-[1200px] flex-col">
@@ -27,7 +35,7 @@ export const Display = ({ title, description }: Props) => {
         <h1 className="text-[40px] font-bold text-[#7645d9]">{title}</h1>
         <hr className="border-gray-200" />
         <div className="mt-5 space-y-4 text-lg">
-            <p className='whitespace-pre-line'>{description}</p>
+          <p className="whitespace-pre-line">{description}</p>
         </div>
         <hr className="border-gray-200" />
         <div>
@@ -50,9 +58,18 @@ export const Display = ({ title, description }: Props) => {
         </div>
         <hr className="border-gray-200" />
         <div className="flex items-center justify-between">
-          <button className="navBtn py-1.8 inline-flex bg-[#EDEDF0] px-6 text-sm font-bold text-[#242424] hover:bg-gray-200">
-            Mark Complete
-          </button>
+          {!user ? (
+            <button
+              className="navBtn py-1.8 inline-flex bg-[#EDEDF0] px-6 text-sm font-bold text-[#242424] hover:bg-gray-200"
+              onClick={toggleSignUp}
+            >
+              Mark Complete
+            </button>
+          ) : (
+            <button className="navBtn py-1.8 inline-flex bg-[#EDEDF0] px-6 text-sm font-bold text-[#242424] hover:bg-gray-200">
+              Mark Complete
+            </button>
+          )}
           <button className="navBtn py-1.8 inline-flex bg-[#7645d9] px-6 text-sm font-bold text-[#FFF] hover:opacity-60">
             <div className="flex items-center">
               Next Lesson

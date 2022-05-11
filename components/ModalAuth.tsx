@@ -1,10 +1,10 @@
 interface ModalAuthProps {
-  modal: boolean
+  open: boolean
   children: React.ReactNode
 }
 
 export const ModalAuth = (props: ModalAuthProps) => {
-  const { modal, children } = props
+  const { open, children } = props
 
-  return <> {modal && children} </>
+  return <> {open && children} </>
 }

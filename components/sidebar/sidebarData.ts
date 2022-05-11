@@ -26,7 +26,7 @@ export const sidebarData = [
     subNav: [
       {
         title: 'Course Introduction',
-        path: "/"
+        path: '/',
       },
       {
         title: 'Mindset & Motivation',
@@ -38,7 +38,7 @@ export const sidebarData = [
       },
       {
         title: 'GitHub Setup',
-        path: "/introduction/github"
+        path: '/introduction/github',
       },
     ],
   },
@@ -51,7 +51,7 @@ export const sidebarData = [
     subNav: [
       {
         title: 'HTML',
-        disabled: true
+        disabled: true,
       },
       {
         title: 'Crash Course',
@@ -63,7 +63,7 @@ export const sidebarData = [
       },
       {
         title: 'CSS',
-        disabled: true
+        disabled: true,
       },
       {
         title: 'Crash Course',
@@ -88,7 +88,7 @@ export const sidebarData = [
     subNav: [
       {
         title: 'Mini Project',
-        disabled: true
+        disabled: true,
       },
       {
         title: 'Build your website',
@@ -104,7 +104,7 @@ export const sidebarData = [
       },
       {
         title: 'Projects',
-        disabled: true
+        disabled: true,
       },
       {
         title: 'E-Portfolio',
@@ -129,7 +129,7 @@ export const sidebarData = [
     subNav: [
       {
         title: 'JavaScript',
-        disabled: true
+        disabled: true,
       },
       {
         title: 'Crash Course',
@@ -158,7 +158,7 @@ export const sidebarData = [
     subNav: [
       {
         title: 'Advanced Projects',
-        disabled: true
+        disabled: true,
       },
       {
         title: 'Advanced Portfolio',
@@ -187,7 +187,7 @@ export const sidebarData = [
     subNav: [
       {
         title: 'React',
-        disabled: true
+        disabled: true,
       },
       {
         title: 'React Setup',
@@ -227,7 +227,7 @@ export const sidebarData = [
     subNav: [
       {
         title: 'Clones',
-        disabled: true
+        disabled: true,
       },
       {
         title: 'Project Clones',
@@ -284,7 +284,7 @@ export const sidebarData = [
     subNav: [
       {
         title: 'First Round',
-        disabled: true
+        disabled: true,
       },
       {
         title: 'JS Trivia',
@@ -296,7 +296,7 @@ export const sidebarData = [
       },
       {
         title: 'Second Round',
-        disabled: true
+        disabled: true,
       },
       {
         title: 'Introduction',
@@ -344,7 +344,7 @@ export const sidebarData = [
       },
       {
         title: 'Third Round',
-        disabled: true
+        disabled: true,
       },
       {
         title: '$100K+ Question',

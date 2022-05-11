@@ -1,0 +1,20 @@
+import { createContext } from 'react'
+import { User } from 'firebase/auth'
+
+interface IAuth {
+  user: User | null
+  signUp: (email: string, password: string) => Promise<void>
+  signIn: (email: string, password: string) => Promise<void>
+  logout: () => Promise<void>
+  error: string | null
+  loading: boolean
+}
+
+export const AuthContext = createContext<IAuth>({
+  user: null,
+  signUp: async () => {},
+  signIn: async () => {},
+  logout: async () => {},
+  error: null,
+  loading: false,
+})
