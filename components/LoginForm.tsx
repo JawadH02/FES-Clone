@@ -47,7 +47,7 @@ export const LoginForm = () => {
           placeholder="Password"
         />
         <button
-          className="navBtn flex !w-full justify-center bg-[#7645d9] !py-2 text-sm font-semibold text-[#FFF] hover:opacity-60"
+          className="mainBtn flex !w-full justify-center bg-[#7645d9] !py-2 text-sm font-semibold text-[#FFF] hover:opacity-60"
           onClick={() => setLogin(true)}
         >
           Sign In

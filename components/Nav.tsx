@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import useSidebar from '../hooks/useSidebar'
 import { Burger } from '@mantine/core'
-import { ModalAuth, LoginForm, SignUpForm } from '../components/index'
-import { useCallback, useContext, useState } from 'react'
+import { ModalAuth } from '../components/index'
+import { useContext, useState } from 'react'
 import Avatar from '@mui/material/Avatar'
 import toast, { Toaster } from 'react-hot-toast'
 
@@ -18,13 +18,13 @@ export const Nav = () => {
   const { sidebar, handleSidebar } = useSidebar()
   const { user, logout } = useAuth()
   const [accountModal, setAccountModal] = useState(false)
-  const { componentState, setComponentState, modal, setModal, toggleSignUp } =
-    useContext(ModalContext)
-
-  const toggleSignIn = () => {
-    setModal((prevState) => !prevState)
-    setComponentState(<LoginForm />)
-  }
+  const {
+    componentState,
+    modal,
+    setModal,
+    toggleSignUp,
+    toggleSignIn,
+  } = useContext(ModalContext)
 
   const handleLogout = () => {
     logout()
@@ -53,13 +53,13 @@ export const Nav = () => {
         {!user ? (
           <>
             <button
-              className="navBtn hidden bg-[#EDEDF0] text-[#242424] hover:bg-gray-200 sm:inline-flex"
+              className="mainBtn hidden bg-[#EDEDF0] text-[#242424] hover:bg-gray-200 sm:inline-flex"
               onClick={toggleSignIn}
             >
               Login
             </button>
             <button
-              className="navBtn inline-flex bg-[#7645d9] text-[#FFF] hover:opacity-60"
+              className="mainBtn inline-flex bg-[#7645d9] text-[#FFF] hover:opacity-60"
               onClick={toggleSignUp}
             >
               Register

@@ -4,7 +4,7 @@ import { SidebarProvider } from '../hooks/useSidebar'
 import { ModalContext } from '../context/ModalContext'
 import { useState } from 'react'
 import { AuthProvider } from '../hooks/useAuth'
-import { SignUpForm } from '../components/index'
+import { SignUpForm, LoginForm } from '../components/index'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [componentState, setComponentState] = useState<React.ReactNode>()
@@ -13,6 +13,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   const toggleSignUp = () => {
     setModal((prevState) => !prevState)
     setComponentState(<SignUpForm />)
+  }
+
+  const toggleSignIn = () => {
+    setModal((prevState) => !prevState)
+    setComponentState(<LoginForm />)
   }
 
   return (
@@ -24,6 +29,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           modal,
           setModal,
           toggleSignUp,
+          toggleSignIn,
         }}
       >
         <SidebarProvider>

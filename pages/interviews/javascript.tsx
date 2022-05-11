@@ -1,15 +1,26 @@
 import { Nav, Sidebar, Display } from '../../components/index'
 
 const Javascript = () => {
-  const title = 'JavaScript Advanced Challenges'
-  const description =
-    'In this video we will be setting up your enviornment to solve the most common interview sections you will come across while applying to jobs.'
+  const data = [
+    {
+      freeVideo: false,
+      title: 'JavaScript Advanced Challenges',
+      description:
+        'In this video we will be setting up your enviornment to solve the most common interview sections you will come across while applying to jobs.',
+    },
+  ]
   return (
     <div>
       <Nav />
       <div className="flex">
         <Sidebar />
-        <Display title={title} description={description} />
+        {data.map(({ title, description, freeVideo }) => (
+          <Display
+            title={title}
+            description={description}
+            freeVideo={freeVideo}
+          />
+        ))}
       </div>
     </div>
   )

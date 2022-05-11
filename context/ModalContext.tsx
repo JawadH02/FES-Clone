@@ -6,6 +6,7 @@ interface ModalContextProps {
   modal: boolean
   setModal: React.Dispatch<React.SetStateAction<boolean>>
   toggleSignUp: () => void
+  toggleSignIn: () => void
 }
 
 export const ModalContext = createContext<ModalContextProps>({
@@ -14,4 +15,5 @@ export const ModalContext = createContext<ModalContextProps>({
   modal: false,
   setModal: () => {},
   toggleSignUp: () => {},
+  toggleSignIn: () => {},
 })
