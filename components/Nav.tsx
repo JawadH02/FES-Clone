@@ -13,6 +13,7 @@ import useAuth from '../hooks/useAuth'
 import Fade from '@mui/material/Fade'
 import { BsFillPersonFill } from 'react-icons/bs'
 import { FiLogOut } from 'react-icons/fi'
+import { FaCrown } from 'react-icons/fa'
 
 export const Nav = () => {
   const { sidebar, handleSidebar } = useSidebar()
@@ -20,6 +21,7 @@ export const Nav = () => {
   const [accountModal, setAccountModal] = useState(false)
   const { componentState, modal, setModal, toggleSignUp, toggleSignIn } =
     useContext(ModalContext)
+  const subscription = false
 
   const handleLogout = () => {
     logout()
@@ -62,13 +64,23 @@ export const Nav = () => {
           </>
         ) : (
           <div>
-            <Avatar
-              onClick={() => setAccountModal((prevState) => !prevState)}
-              className="cursor-pointer"
-              sx={{ bgcolor: '#7545D9' }}
-            >
-              {user.email?.charAt(0)}
-            </Avatar>
+            <div className="flex items-center space-x-4">
+              {!subscription && (
+                <button className="mainBtn hidden items-center bg-[#7645d9] !px-5 text-white hover:opacity-70 md:flex">
+                  Unlock Pro{' '}
+                  <div>
+                    <FaCrown className="ml-2 text-[#FEB63B]" />
+                  </div>{' '}
+                </button>
+              )}
+              <Avatar
+                onClick={() => setAccountModal((prevState) => !prevState)}
+                className="cursor-pointer"
+                sx={{ bgcolor: '#7545D9' }}
+              >
+                {user.email?.charAt(0)}
+              </Avatar>
+            </div>
             <ModalAuth open={accountModal}>
               <div className={`opacity-0 ${accountModal ? 'opacity-100' : ''}`}>
                 <Fade in={accountModal}>
