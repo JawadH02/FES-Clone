@@ -3,6 +3,7 @@ import { Nav, Sidebar, Display } from '../../components/index'
 const Style = () => {
   const data = [
     {
+      nextLesson: '/miniproject/responsive',
       freeVideo: false,
       title: 'Style Mini Project',
       description: `It's time to go back to our first project we have built and style it using CSS best practises. We will be reinforcing all the Flexbox knowledge we have just learnt in order to develop your first responsive website.
@@ -15,11 +16,12 @@ const Style = () => {
       <Nav />
       <div className="flex">
         <Sidebar />
-        {data.map(({ title, description, freeVideo }) => (
+        {data.map(({ title, description, freeVideo, nextLesson }) => (
           <Display
             title={title}
             description={description}
             freeVideo={freeVideo}
+            nextLesson={nextLesson}
           />
         ))}
       </div>

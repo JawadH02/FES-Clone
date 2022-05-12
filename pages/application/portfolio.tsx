@@ -3,6 +3,7 @@ import { Nav, Sidebar, Display } from '../../components/index'
 const Portfolio = () => {
   const data = [
     {
+      nextLesson: '/application/apply',
       freeVideo: false,
       title: 'Portfolio Tips',
       description: `In this video you will learn how to build a really impressive portfolio that will help you land high paying job offers with zero commercial experience and without a degree. These portfolio tips will put you light years ahead of your competition and will help you land multiple interviews when you start applying to jobs very soon.
@@ -17,11 +18,12 @@ const Portfolio = () => {
       <Nav />
       <div className="flex">
         <Sidebar />
-        {data.map(({ title, description, freeVideo }) => (
+        {data.map(({ title, description, freeVideo, nextLesson }) => (
           <Display
             title={title}
             description={description}
             freeVideo={freeVideo}
+            nextLesson={nextLesson}
           />
         ))}
       </div>

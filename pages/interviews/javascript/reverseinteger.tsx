@@ -3,6 +3,7 @@ import { Nav, Sidebar, Display } from '../../../components/index'
 const ReverseInteger = () => {
   const data = [
     {
+      nextLesson: '/interviews/javascript/stringifyid',
       freeVideo: false,
       title: 'Q3 - Reverse Integer',
       description:
@@ -14,11 +15,12 @@ const ReverseInteger = () => {
       <Nav />
       <div className="flex">
         <Sidebar />
-        {data.map(({ title, description, freeVideo }) => (
+        {data.map(({ title, description, freeVideo, nextLesson }) => (
           <Display
             title={title}
             description={description}
             freeVideo={freeVideo}
+            nextLesson={nextLesson}
           />
         ))}
       </div>

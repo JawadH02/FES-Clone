@@ -3,6 +3,7 @@ import { Nav, Sidebar, Display } from '../../components/index'
 const Hard = () => {
   const data = [
     {
+      nextLesson: '/eportfolio/advanced',
       freeVideo: false,
       title: 'JavaScript Advanced Challenges',
       description: `In this video we will be strengthening your JavaScript foundations and improving your problem solving skills through hard level difficulty questions. The JavaScript challenges section is geared towards building your advanced knowledge in JavaScript in order to impress interviewers for intern and junior frontend developer roles.
@@ -18,11 +19,12 @@ const Hard = () => {
       <Nav />
       <div className="flex">
         <Sidebar />
-        {data.map(({ title, description, freeVideo }) => (
+        {data.map(({ title, description, freeVideo, nextLesson }) => (
           <Display
             title={title}
             description={description}
             freeVideo={freeVideo}
+            nextLesson={nextLesson}
           />
         ))}
       </div>

@@ -3,6 +3,7 @@ import { Nav, Sidebar, Display } from '../../components/index'
 const Final = () => {
   const data = [
     {
+      nextLesson: '/javascript/crashcourse',
       freeVideo: false,
       title: 'Final Project',
       description: `For this project, we will combine all the skills we are now familiar with and apply them to a real world project scenario. We will be using this website https://treact.owaiskhan.me/components/landingPages/SaaSProductLandingPage as inspiration.
@@ -17,11 +18,12 @@ const Final = () => {
       <Nav />
       <div className="flex">
         <Sidebar />
-        {data.map(({ title, description, freeVideo }) => (
+        {data.map(({ title, description, freeVideo, nextLesson }) => (
           <Display
             title={title}
             description={description}
             freeVideo={freeVideo}
+            nextLesson={nextLesson}
           />
         ))}
       </div>

@@ -203,6 +203,7 @@ export const sidebarData = [
       },
       {
         title: 'Firebase',
+        disabled: true,
       },
       {
         title: 'Intro to Firebase',
@@ -235,6 +236,7 @@ export const sidebarData = [
       },
       {
         title: 'Final Project',
+        disabled: true,
       },
       {
         title: 'Final Preparation',

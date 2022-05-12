@@ -3,6 +3,7 @@ import { Nav, Sidebar, Display } from '../../components/index'
 const Medium = () => {
   const data = [
     {
+      nextLesson: "/javascript/hard",
       freeVideo: false,
       title: 'JavaScript Medium Challenges',
       description: `In this video we will be building your JavaScript foundations and improving your problem solving skills through medium level difficulty questions. The JavaScript challenges section is geared towards building up your functional programming knowledge so you can pass technical interviews.
@@ -15,11 +16,12 @@ const Medium = () => {
       <Nav />
       <div className="flex">
         <Sidebar />
-        {data.map(({ title, description, freeVideo }) => (
+        {data.map(({ title, description, freeVideo, nextLesson }) => (
           <Display
             title={title}
             description={description}
             freeVideo={freeVideo}
+            nextLesson={nextLesson}
           />
         ))}
       </div>

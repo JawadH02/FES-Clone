@@ -2,7 +2,7 @@ import { TextInput, PasswordInput } from '@mantine/core'
 import React, { useCallback, useContext, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { LoginForm } from '../components/index'
-import { ModalContext } from '../context/ModalContext'
+import { ModalContext } from '../context/ModalContext/ModalContext'
 import useAuth from '../hooks/useAuth'
 
 interface Inputs {

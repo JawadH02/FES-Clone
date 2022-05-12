@@ -3,6 +3,7 @@ import { Nav, Sidebar, Display } from '../../components/index'
 const Crashcourse = () => {
   const data = [
     {
+      nextLesson: '/react/ecommerce',
       freeVideo: true,
       title: 'React Crash Course',
       description: `In this video you will be learning the fundamentals of React by going through the best React crash course ever made.
@@ -19,11 +20,12 @@ const Crashcourse = () => {
       <Nav />
       <div className="flex">
         <Sidebar />
-        {data.map(({ title, description, freeVideo }) => (
+        {data.map(({ title, description, freeVideo, nextLesson }) => (
           <Display
             title={title}
             description={description}
             freeVideo={freeVideo}
+            nextLesson={nextLesson}
           />
         ))}
       </div>

@@ -3,6 +3,7 @@ import { Nav, Sidebar, Display } from '../../components/index'
 const Jstrivia = () => {
   const data = [
     {
+      nextLesson: '/interviews/csstrivia',
       freeVideo: false,
       title: 'JavaScript Trivia Questions',
       description:
@@ -14,11 +15,12 @@ const Jstrivia = () => {
       <Nav />
       <div className="flex">
         <Sidebar />
-        {data.map(({ title, description, freeVideo }) => (
+        {data.map(({ title, description, freeVideo, nextLesson }) => (
           <Display
             title={title}
             description={description}
             freeVideo={freeVideo}
+            nextLesson={nextLesson}
           />
         ))}
       </div>

@@ -8,7 +8,7 @@ import toast, { Toaster } from 'react-hot-toast'
 
 import MuiModal from '@mui/material/Modal'
 import { XIcon } from '@heroicons/react/outline'
-import { ModalContext } from '../context/ModalContext'
+import { ModalContext } from '../context/ModalContext/ModalContext'
 import useAuth from '../hooks/useAuth'
 import Fade from '@mui/material/Fade'
 import { BsFillPersonFill } from 'react-icons/bs'
@@ -18,13 +18,8 @@ export const Nav = () => {
   const { sidebar, handleSidebar } = useSidebar()
   const { user, logout } = useAuth()
   const [accountModal, setAccountModal] = useState(false)
-  const {
-    componentState,
-    modal,
-    setModal,
-    toggleSignUp,
-    toggleSignIn,
-  } = useContext(ModalContext)
+  const { componentState, modal, setModal, toggleSignUp, toggleSignIn } =
+    useContext(ModalContext)
 
   const handleLogout = () => {
     logout()

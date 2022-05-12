@@ -3,6 +3,7 @@ import { Nav, Sidebar, Display } from '../../../components/index'
 const Anagrams = () => {
   const data = [
     {
+      nextLesson: '/interviews/javascript/arraychunk',
       freeVideo: false,
       title: 'Q6 - Anagrams',
       description:
@@ -14,11 +15,12 @@ const Anagrams = () => {
       <Nav />
       <div className="flex">
         <Sidebar />
-        {data.map(({ title, description, freeVideo }) => (
+        {data.map(({ title, description, freeVideo, nextLesson }) => (
           <Display
             title={title}
             description={description}
             freeVideo={freeVideo}
+            nextLesson={nextLesson}
           />
         ))}
       </div>

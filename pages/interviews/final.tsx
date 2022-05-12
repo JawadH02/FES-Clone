@@ -3,6 +3,7 @@ import { Nav, Sidebar, Display } from '../../components/index'
 const Final = () => {
   const data = [
     {
+      nextLesson: '',
       freeVideo: false,
       title: 'Interview Question 1',
       description:
@@ -14,11 +15,12 @@ const Final = () => {
       <Nav />
       <div className="flex">
         <Sidebar />
-        {data.map(({ title, description, freeVideo }) => (
+        {data.map(({ title, description, freeVideo, nextLesson }) => (
           <Display
             title={title}
             description={description}
             freeVideo={freeVideo}
+            nextLesson={nextLesson}
           />
         ))}
       </div>

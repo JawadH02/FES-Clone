@@ -4,6 +4,7 @@ import { Display, Nav, Sidebar } from '../components/index'
 const Home = () => {
   const data = [
     {
+      nextLesson: '/introduction/motivation',
       freeVideo: true,
       title: 'Course Introduction',
       description: `In this course, you will not only learn how to code, but you will also learn how to leverage the skills you learn to land very good frontend software engineering roles. This course is designed to get you employable and working at a top tech company in the fastest time possible.
@@ -23,8 +24,13 @@ const Home = () => {
       <Nav />
       <div className="flex">
         <Sidebar />
-        {data.map(({ title, description, freeVideo }) => (
-          <Display title={title} description={description} freeVideo={freeVideo} />
+        {data.map(({ title, description, freeVideo, nextLesson }) => (
+          <Display
+            title={title}
+            description={description}
+            freeVideo={freeVideo}
+            nextLesson={nextLesson}
+          />
         ))}
       </div>
     </div>

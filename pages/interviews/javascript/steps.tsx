@@ -3,6 +3,7 @@ import { Nav, Sidebar, Display } from '../../../components/index'
 const Steps = () => {
   const data = [
     {
+      nextLesson: '/interviews/javascript/pyramid',
       freeVideo: false,
       title: 'Q9 - Steps',
       description:
@@ -14,11 +15,12 @@ const Steps = () => {
       <Nav />
       <div className="flex">
         <Sidebar />
-        {data.map(({ title, description, freeVideo }) => (
+        {data.map(({ title, description, freeVideo, nextLesson }) => (
           <Display
             title={title}
             description={description}
             freeVideo={freeVideo}
+            nextLesson={nextLesson}
           />
         ))}
       </div>

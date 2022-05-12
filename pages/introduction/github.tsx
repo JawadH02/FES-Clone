@@ -3,6 +3,7 @@ import { Nav, Sidebar, Display } from '../../components/index'
 const Github = () => {
   const data = [
     {
+      nextLesson: '/html/crashcourse',
       freeVideo: false,
       title: 'GitHub Setup',
       description: `GitHub is used by millions of developers to save and deploy their code.
@@ -18,11 +19,12 @@ const Github = () => {
       <Nav />
       <div className="flex">
         <Sidebar />
-        {data.map(({ title, description, freeVideo }) => (
+        {data.map(({ title, description, freeVideo, nextLesson }) => (
           <Display
             title={title}
             description={description}
             freeVideo={freeVideo}
+            nextLesson={nextLesson}
           />
         ))}
       </div>

@@ -9,7 +9,7 @@ import {
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useMemo, useState } from 'react'
 import { auth } from '../firebase/firebase'
-import { AuthContext } from '../context/AuthContext'
+import { AuthContext } from '../context/AuthContext/AuthContext'
 
 interface AuthProviderProps {
   children: React.ReactNode

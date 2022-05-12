@@ -3,6 +3,7 @@ import { Nav, Sidebar, Display } from '../../../components/index'
 const Capitalize = () => {
   const data = [
     {
+      nextLesson: '/interviews/javascript/steps',
       freeVideo: false,
       title: 'Q8 - Capitalize Sentence',
       description:
@@ -14,11 +15,12 @@ const Capitalize = () => {
       <Nav />
       <div className="flex">
         <Sidebar />
-        {data.map(({ title, description, freeVideo }) => (
+        {data.map(({ title, description, freeVideo, nextLesson }) => (
           <Display
             title={title}
             description={description}
             freeVideo={freeVideo}
+            nextLesson={nextLesson}
           />
         ))}
       </div>

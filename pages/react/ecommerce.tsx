@@ -3,6 +3,7 @@ import { Nav, Sidebar, Display } from '../../components/index'
 const Ecommerce = () => {
   const data = [
     {
+      nextLesson: '/firebase/introduction',
       freeVideo: false,
       title: 'E-Commerce with React',
       description: `In this video we will not only be rewriting the library app we have developed previous sections, but we will also be expanding the functionality using advanced features used by top tech companies to really impress interviewers going through your application.
@@ -17,11 +18,12 @@ const Ecommerce = () => {
       <Nav />
       <div className="flex">
         <Sidebar />
-        {data.map(({ title, description, freeVideo }) => (
+        {data.map(({ title, description, freeVideo, nextLesson }) => (
           <Display
             title={title}
             description={description}
             freeVideo={freeVideo}
+            nextLesson={nextLesson}
           />
         ))}
       </div>

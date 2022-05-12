@@ -3,6 +3,7 @@ import { Nav, Sidebar, Display } from '../../../components/index'
 const Maxcharacters = () => {
   const data = [
     {
+      nextLesson: '/interviews/javascript/anagrams',
       freeVideo: false,
       title: 'Q5 - Maximum Character',
       description:
@@ -14,11 +15,12 @@ const Maxcharacters = () => {
       <Nav />
       <div className="flex">
         <Sidebar />
-        {data.map(({ title, description, freeVideo }) => (
+        {data.map(({ title, description, freeVideo, nextLesson }) => (
           <Display
             title={title}
             description={description}
             freeVideo={freeVideo}
+            nextLesson={nextLesson}
           />
         ))}
       </div>

@@ -3,6 +3,7 @@ import { Nav, Sidebar, Display } from '../../components/index'
 const Bestpractises = () => {
   const data = [
     {
+      nextLesson: '/css/crashcourse',
       freeVideo: false,
       title: 'Best Practises',
       description:
@@ -14,11 +15,12 @@ const Bestpractises = () => {
       <Nav />
       <div className="flex">
         <Sidebar />
-        {data.map(({ title, description, freeVideo }) => (
+        {data.map(({ title, description, freeVideo, nextLesson }) => (
           <Display
             title={title}
             description={description}
             freeVideo={freeVideo}
+            nextLesson={nextLesson}
           />
         ))}
       </div>

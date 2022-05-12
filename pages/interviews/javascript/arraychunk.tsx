@@ -3,6 +3,7 @@ import { Nav, Sidebar, Display } from '../../../components/index'
 const Arraychunks = () => {
   const data = [
     {
+      nextLesson: '/interviews/javascript/capitalize',
       freeVideo: false,
       title: 'Q7 - Array Chunk',
       description:
@@ -14,11 +15,12 @@ const Arraychunks = () => {
       <Nav />
       <div className="flex">
         <Sidebar />
-        {data.map(({ title, description, freeVideo }) => (
+        {data.map(({ title, description, freeVideo, nextLesson }) => (
           <Display
             title={title}
             description={description}
             freeVideo={freeVideo}
+            nextLesson={nextLesson}
           />
         ))}
       </div>

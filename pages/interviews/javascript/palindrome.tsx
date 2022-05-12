@@ -3,6 +3,7 @@ import { Nav, Sidebar, Display } from '../../../components/index'
 const Palindrome = () => {
   const data = [
     {
+      nextLesson: '/interviews/javascript/reverseinteger',
       freeVideo: false,
       title: 'Q2 - Palindrome',
       description:
@@ -14,11 +15,12 @@ const Palindrome = () => {
       <Nav />
       <div className="flex">
         <Sidebar />
-        {data.map(({ title, description, freeVideo }) => (
+        {data.map(({ title, description, freeVideo, nextLesson }) => (
           <Display
             title={title}
             description={description}
             freeVideo={freeVideo}
+            nextLesson={nextLesson}
           />
         ))}
       </div>

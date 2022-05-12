@@ -3,6 +3,7 @@ import { Nav, Sidebar, Display } from '../../components/index'
 const Motivation = () => {
   const data = [
     {
+      nextLesson: '/introduction/setup',
       freeVideo: true,
       title: 'Mindset and Motivation',
       description:
@@ -14,11 +15,12 @@ const Motivation = () => {
       <Nav />
       <div className="flex">
         <Sidebar />
-        {data.map(({ title, description, freeVideo }) => (
+        {data.map(({ title, description, freeVideo, nextLesson }) => (
           <Display
             title={title}
             description={description}
             freeVideo={freeVideo}
+            nextLesson={nextLesson}
           />
         ))}
       </div>

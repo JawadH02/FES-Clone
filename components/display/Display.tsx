@@ -3,17 +3,25 @@ import { FaDiscord, FaAngleRight, FaLock } from 'react-icons/fa'
 import Link from 'next/link'
 import useAuth from '../../hooks/useAuth'
 import { useContext } from 'react'
-import { ModalContext } from '../../context/ModalContext'
+import { ModalContext } from '../../context/ModalContext/ModalContext'
+import { useRouter } from 'next/router'
 
 interface Props {
   title: string
   description: string
   freeVideo: boolean
+  nextLesson: string
 }
 
-export const Display = ({ title, description, freeVideo }: Props) => {
+export const Display = ({
+  title,
+  description,
+  freeVideo,
+  nextLesson,
+}: Props) => {
   const { user } = useAuth()
   const { toggleSignUp, toggleSignIn } = useContext(ModalContext)
+  const router = useRouter()
 
   return (
     <div className="mx-auto mb-4 flex w-full max-w-[1200px] flex-col">
@@ -97,7 +105,10 @@ export const Display = ({ title, description, freeVideo }: Props) => {
               Mark Complete
             </button>
           )}
-          <button className="mainBtn py-1.8 inline-flex bg-[#7645d9] px-6 text-sm font-bold text-[#FFF] hover:opacity-60">
+          <button
+            className="mainBtn py-1.8 inline-flex bg-[#7645d9] px-6 text-sm font-bold text-[#FFF] hover:opacity-60"
+            onClick={() => router.push(nextLesson)}
+          >
             <div className="flex items-center">
               Next Lesson
               <FaAngleRight className="text-lg font-bold" />
