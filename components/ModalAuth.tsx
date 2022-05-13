@@ -39,7 +39,7 @@ export const ModalAuth = (props: ModalAuthProps) => {
         <Fade in={open}>
           <div
             className={`${
-              type === 'SubscriptionModal' ? 'h-[720px]' : 'h-[592px]'
+              type === 'SubscriptionModal' ? 'h-[783px]' : 'h-[592px]'
             }`}
           >
             <button
