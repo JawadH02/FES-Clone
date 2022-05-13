@@ -6,13 +6,13 @@ export const SubscriptionCarousel = () => {
       <input type="radio" name="slider" id="s3" className="hidden" />
 
       <label htmlFor="s1" id="slide1" className="subscriptionCard">
-        1
+        PRO
       </label>
       <label htmlFor="s2" id="slide2" className="subscriptionCard">
-        2
+        VIP
       </label>
       <label htmlFor="s3" id="slide3" className="subscriptionCard">
-        3
+        VIP+
       </label>
     </section>
   )
