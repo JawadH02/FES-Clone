@@ -5,4 +5,5 @@ export { DashboardCard } from './dashboardCard/DashboardCard'
 export { Display } from './display/Display'
 export { ModalAuth } from './ModalAuth'
 export { LoginForm } from './LoginForm'
-export { SignUpForm } from "./SignUpForm"
+export { SignUpForm } from './SignUpForm'
+export { SubscriptionModal } from './SubscriptionModal'

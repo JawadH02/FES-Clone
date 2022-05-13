@@ -2,25 +2,26 @@ import Image from 'next/image'
 import useSidebar from '../hooks/useSidebar'
 import { Burger } from '@mantine/core'
 import { ModalAuth } from '../components/index'
-import { useContext, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Avatar from '@mui/material/Avatar'
 import toast, { Toaster } from 'react-hot-toast'
 
-import MuiModal from '@mui/material/Modal'
-import { XIcon } from '@heroicons/react/outline'
 import { ModalContext } from '../context/ModalContext/ModalContext'
 import useAuth from '../hooks/useAuth'
 import Fade from '@mui/material/Fade'
 import { BsFillPersonFill } from 'react-icons/bs'
 import { FiLogOut } from 'react-icons/fi'
 import { FaCrown } from 'react-icons/fa'
+import { SubscriptionModalContext } from '../context/SubscriptionModalContext/SubscriptionModalContext'
 
 export const Nav = () => {
   const { sidebar, handleSidebar } = useSidebar()
   const { user, logout } = useAuth()
   const [accountModal, setAccountModal] = useState(false)
-  const { componentState, modal, setModal, toggleSignUp, toggleSignIn } =
+  const { componentState, modal, toggleSignUp, toggleSignIn } =
     useContext(ModalContext)
+  const { handleSubscriptionModal, subscriptionModal, SubscriptionModalState } =
+    useContext(SubscriptionModalContext)
   const subscription = false
 
   const handleLogout = () => {
@@ -66,12 +67,24 @@ export const Nav = () => {
           <div>
             <div className="flex items-center space-x-4">
               {!subscription && (
-                <button className="mainBtn hidden items-center bg-[#7645d9] !px-5 text-white hover:opacity-70 md:flex">
-                  Unlock Pro{' '}
-                  <div>
-                    <FaCrown className="ml-2 text-[#FEB63B]" />
-                  </div>{' '}
-                </button>
+                <>
+                  <button
+                    className="mainBtn hidden items-center bg-[#7645d9] !px-5 text-white hover:opacity-70 md:flex"
+                    onClick={handleSubscriptionModal}
+                  >
+                    Unlock Pro
+                    <div>
+                      <FaCrown className="ml-2 text-[#FEB63B]" />
+                    </div>
+                  </button>
+                  <ModalAuth
+                    open={subscriptionModal}
+                    type="SubscriptionModal"
+                    img="/assets/subscription.png"
+                  >
+                    {SubscriptionModalState}
+                  </ModalAuth>
+                </>
               )}
               <Avatar
                 onClick={() => setAccountModal((prevState) => !prevState)}
@@ -81,60 +94,32 @@ export const Nav = () => {
                 {user.email?.charAt(0)}
               </Avatar>
             </div>
-            <ModalAuth open={accountModal}>
-              <div className={`opacity-0 ${accountModal ? 'opacity-100' : ''}`}>
-                <Fade in={accountModal}>
-                  <div className="accountModal">
-                    <button className="accountButton">
-                      <div className="accountModalSection group">
-                        <BsFillPersonFill className="accountModalIcon" />
-                        <div className="text-[16px]">Account</div>
-                      </div>
-                    </button>
-                    <button className="accountButton" onClick={handleLogout}>
-                      <div className="accountModalSection group">
-                        <FiLogOut className="accountModalIcon" />
-                        <div className="text-[16px]">Logout</div>
-                      </div>
-                    </button>
-                  </div>
-                </Fade>
-              </div>
-            </ModalAuth>
+            <div className={`opacity-0 ${accountModal ? 'opacity-100' : ''}`}>
+              <Fade in={accountModal}>
+                <div className="accountModal">
+                  <button className="accountButton">
+                    <div className="accountModalSection group">
+                      <BsFillPersonFill className="accountModalIcon" />
+                      <div className="text-[16px]">Account</div>
+                    </div>
+                  </button>
+                  <button className="accountButton" onClick={handleLogout}>
+                    <div className="accountModalSection group">
+                      <FiLogOut className="accountModalIcon" />
+                      <div className="text-[16px]">Logout</div>
+                    </div>
+                  </button>
+                </div>
+              </Fade>
+            </div>
           </div>
         )}
-        <ModalAuth open={modal}>
-          <MuiModal
-            open={modal}
-            onClose={(_, reason: 'backdropClick') => !reason}
-            className={`relative !top-40 left-0 right-0 z-50 mx-auto w-full max-w-[825px] overflow-hidden overflow-y-scroll rounded-md md:px-4 lg:px-0 ${
-              modal && '!h-screen overflow-hidden'
-            }`}
-          >
-            <>
-              <button
-                className="modalButton absolute right-5 top-5 !z-40 h-9 w-9 border-none bg-[#404F54] text-white hover:bg-[#2f2f2f] md:right-7 lg:right-5"
-                onClick={() => setModal((prevState) => !prevState)}
-              >
-                <XIcon className="h-6 w-6" />
-              </button>
-              <div className="flex h-1/2 justify-between bg-white md:h-[600px]">
-                <div className="w-full md:w-1/2">
-                  <div className="mx-auto max-w-[375px] space-y-3 p-9 md:mx-0">
-                    <div className="space-y-3">{componentState}</div>
-                  </div>
-                </div>
-                <div className="relative hidden w-[436px] md:flex">
-                  <figure className="absolute left-0 right-0 bottom-0 top-0">
-                    <img
-                      src="https://frontendsimplified.com/_nuxt/img/Login%20Design.8235d38.jpg"
-                      alt=""
-                    />
-                  </figure>
-                </div>
-              </div>
-            </>
-          </MuiModal>
+        <ModalAuth
+          open={modal}
+          type="AuthModal"
+          img="https://frontendsimplified.com/_nuxt/img/Login%20Design.8235d38.jpg"
+        >
+          {componentState}
         </ModalAuth>
       </div>
     </nav>
