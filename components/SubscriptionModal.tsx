@@ -1,3 +1,6 @@
+import { SubscriptionCarousel } from "./SubscriptionCarousel"
+
+
 export const SubscriptionModal = () => {
   return (
     <div className="text-center">
@@ -11,6 +14,9 @@ export const SubscriptionModal = () => {
           </span>
           and more
         </p>
+        <div>
+          <SubscriptionCarousel />
+        </div>
       </div>
     </div>
   )
