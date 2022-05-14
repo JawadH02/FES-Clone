@@ -92,7 +92,7 @@ export const Nav = () => {
                 className="cursor-pointer"
                 sx={{ bgcolor: '#7545D9' }}
               >
-                {user.email?.charAt(0)}
+                {user.email?.charAt(0).toUpperCase()}
               </Avatar>
             </div>
             <div className={`opacity-0 ${accountModal ? 'opacity-100' : ''}`}>

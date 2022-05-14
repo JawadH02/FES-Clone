@@ -42,7 +42,11 @@ export const Display = ({
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-white">
               <div className="flex flex-col items-center space-y-2">
                 {!user && (
-                  <div className="space-y-4">
+                  <div className="space-y-3">
+                    <div className='flex flex-col items-center space-y-3'>
+                      <FaLock className="text-4xl" />
+                      <h1 className="text-2xl font-bold">Unlock this video</h1>
+                    </div>
                     <h3>Log into your account to watch this video!</h3>
                     <div className="flex items-center justify-center space-x-4">
                       <button
@@ -61,10 +65,11 @@ export const Display = ({
                   </div>
                 )}
                 {user && !subscription && (
-                  <>
-                    <FaLock className="text-4xl" />
-                    <h1 className="text-2xl">Unlock this video</h1>
-                  </>
+                  <div className='flex flex-col items-center space-y-2'>
+                  <FaLock className="text-4xl" />
+                  <h1 className="text-2xl font-bold">Unlock this video</h1>
+                  <h3>Become a Pro to watch this video!</h3>
+                </div>
                 )}
               </div>
             </div>
