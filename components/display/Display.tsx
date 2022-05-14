@@ -5,6 +5,7 @@ import useAuth from '../../hooks/useAuth'
 import { useContext } from 'react'
 import { ModalContext } from '../../context/ModalContext/ModalContext'
 import { useRouter } from 'next/router'
+import { useSubscription } from '../../hooks/useSubscription'
 
 interface Props {
   title: string
@@ -21,6 +22,7 @@ export const Display = ({
 }: Props) => {
   const { user } = useAuth()
   const { toggleSignUp, toggleSignIn } = useContext(ModalContext)
+  const subscription = useSubscription(user)
   const router = useRouter()
 
   return (
@@ -39,8 +41,6 @@ export const Display = ({
           ) : (
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-white">
               <div className="flex flex-col items-center space-y-2">
-                <FaLock className="text-4xl" />
-                <h1 className="text-2xl">Unlock this video</h1>
                 {!user && (
                   <div className="space-y-4">
                     <h3>Log into your account to watch this video!</h3>
@@ -60,9 +60,24 @@ export const Display = ({
                     </div>
                   </div>
                 )}
-                {/* Pro member */}
+                {user && !subscription && (
+                  <>
+                    <FaLock className="text-4xl" />
+                    <h1 className="text-2xl">Unlock this video</h1>
+                  </>
+                )}
               </div>
             </div>
+          )}
+          {subscription && (
+            <ReactPlayer
+              url="https://youtu.be/mLRbZJS5A_E"
+              width="100%"
+              height="100%"
+              style={{ position: 'absolute', top: '0', left: '0' }}
+              controls
+              stopOnUnmount
+            />
           )}
         </div>
       </div>

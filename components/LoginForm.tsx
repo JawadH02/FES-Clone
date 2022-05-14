@@ -1,6 +1,7 @@
 import { TextInput, PasswordInput } from '@mantine/core'
 import React, { useCallback, useContext, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { Loader } from './index'
 import { SignUpForm } from '../components/SignUpForm'
 import { ModalContext } from '../context/ModalContext/ModalContext'
 import useAuth from '../hooks/useAuth'
@@ -12,9 +13,10 @@ interface Inputs {
 }
 
 export const LoginForm = () => {
-  const { signIn } = useAuth()
+  const { signIn, loading, error } = useAuth()
   const [login, setLogin] = useState(false)
-  const { componentState, setComponentState, setModal } = useContext(ModalContext)
+  const { componentState, setComponentState, setModal } =
+    useContext(ModalContext)
   const {
     handleSubmit,
     register,
@@ -24,8 +26,11 @@ export const LoginForm = () => {
 
   const onSignInSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
     if (login) await signIn(email, password)
-    setModal(prevState => !prevState)
+    setModal((prevState) => !prevState)
     reset()
+    if (error) {
+      setModal((prevState) => prevState)
+    }
   }
 
   const handleLoginClick = useCallback(() => {
@@ -39,18 +44,22 @@ export const LoginForm = () => {
         <TextInput
           label="Email"
           {...register('email', { required: true })}
-          placeholder="your@email.com"
+          placeholder="Email"
         />
         <PasswordInput
           label="Password"
           {...register('password', { required: true })}
-          placeholder="Password"
+          placeholder="********"
         />
+        {error && (
+          <p className="p-1 text-[13px] font-light text-orange-500">{error}</p>
+        )}
         <button
+          disabled={loading}
           className="mainBtn flex !w-full justify-center bg-[#7645d9] !py-2 text-sm font-semibold text-[#FFF] hover:opacity-60"
           onClick={() => setLogin(true)}
         >
-          Sign In
+          {loading ? <Loader color="dark:fill-white" /> : 'Sign in'}
         </button>
       </form>
       <div className="space-y-2">
@@ -67,7 +76,7 @@ export const LoginForm = () => {
             className="flex text-[12px] text-[#7645d9] underline"
             onClick={handleLoginClick}
           >
-            Sign up
+            Sign Up
           </button>
         </div>
       </div>

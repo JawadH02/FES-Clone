@@ -1,7 +1,7 @@
 import { TextInput, PasswordInput } from '@mantine/core'
 import React, { useCallback, useContext, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { LoginForm } from '../components/index'
+import { LoginForm, Loader } from '../components/index'
 import { ModalContext } from '../context/ModalContext/ModalContext'
 import useAuth from '../hooks/useAuth'
 
@@ -13,8 +13,9 @@ interface Inputs {
 
 export const SignUpForm = () => {
   const [registerUser, setRegisterUser] = useState(false)
-  const { componentState, setComponentState, setModal } = useContext(ModalContext)
-  const { signUp } = useAuth()
+  const { componentState, setComponentState, setModal } =
+    useContext(ModalContext)
+  const { signUp, error, loading } = useAuth()
 
   const {
     handleSubmit,
@@ -29,8 +30,11 @@ export const SignUpForm = () => {
     password,
   }) => {
     if (registerUser) await signUp(email, password)
-    setModal(prevState => !prevState)
+
     reset()
+    if (!error) {
+      setModal((prevState) => !prevState)
+    }
   }
 
   const handleSignupClick = useCallback(() => {
@@ -46,22 +50,34 @@ export const SignUpForm = () => {
       <form className="space-y-3" onSubmit={handleSubmit(onRegisterSubmit)}>
         <TextInput
           label="Name"
-          placeholder="Name"
+          placeholder="Jane Doe"
           {...register('name', { required: true })}
         />
-        <TextInput
-          label="Email"
-          {...register('email', { required: true })}
-          placeholder="your@email.com"
-        />
+
+        <div className="space-y-1">
+          <label className="text-[14px]">Email</label>
+          <input
+            type="email"
+            {...register('email', { required: true })}
+            placeholder="jane@example.com"
+            className="input"
+          />
+        </div>
+
         <PasswordInput
           label="Password"
           {...register('password', { required: true })}
-          placeholder="Password"
+          placeholder="********"
         />
-        <button className="mainBtn flex !w-full justify-center bg-[#7645d9] !py-2 text-sm font-semibold text-[#FFF] hover:opacity-60"
-        onClick={() => setRegisterUser(true)}>
-          Get Started!
+        {error && (
+          <p className="p-1 text-[13px] font-light text-orange-500">{error}</p>
+        )}
+
+        <button
+          className="mainBtn flex !w-full justify-center bg-[#7645d9] !py-2 text-sm font-semibold text-[#FFF] hover:opacity-60"
+          onClick={() => setRegisterUser(true)}
+        >
+          {loading ? <Loader color="dark:fill-white" /> : 'Get Started!'}
         </button>
       </form>
       <div className="space-y-2">

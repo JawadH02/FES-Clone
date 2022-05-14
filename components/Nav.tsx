@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import useSidebar from '../hooks/useSidebar'
 import { Burger } from '@mantine/core'
-import { ModalAuth } from '../components/index'
+import { ModalWrapper } from '../components/index'
 import React, { useContext, useState } from 'react'
 import Avatar from '@mui/material/Avatar'
 import toast, { Toaster } from 'react-hot-toast'
@@ -13,6 +13,7 @@ import { BsFillPersonFill } from 'react-icons/bs'
 import { FiLogOut } from 'react-icons/fi'
 import { FaCrown } from 'react-icons/fa'
 import { SubscriptionModalContext } from '../context/SubscriptionModalContext/SubscriptionModalContext'
+import { useSubscription } from '../hooks/useSubscription'
 
 export const Nav = () => {
   const { sidebar, handleSidebar } = useSidebar()
@@ -22,7 +23,7 @@ export const Nav = () => {
     useContext(ModalContext)
   const { handleSubscriptionModal, subscriptionModal, SubscriptionModalState } =
     useContext(SubscriptionModalContext)
-  const subscription = false
+  const subscription = useSubscription(user)
 
   const handleLogout = () => {
     logout()
@@ -77,13 +78,13 @@ export const Nav = () => {
                       <FaCrown className="ml-2 text-[#FEB63B]" />
                     </div>
                   </button>
-                  <ModalAuth
+                  <ModalWrapper
                     open={subscriptionModal}
                     type="SubscriptionModal"
                     img="/assets/subscription.png"
                   >
                     {SubscriptionModalState}
-                  </ModalAuth>
+                  </ModalWrapper>
                 </>
               )}
               <Avatar
@@ -114,13 +115,13 @@ export const Nav = () => {
             </div>
           </div>
         )}
-        <ModalAuth
+        <ModalWrapper
           open={modal}
           type="AuthModal"
           img="https://frontendsimplified.com/_nuxt/img/Login%20Design.8235d38.jpg"
         >
           {componentState}
-        </ModalAuth>
+        </ModalWrapper>
       </div>
     </nav>
   )

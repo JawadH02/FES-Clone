@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import { SubscriptionCardWrapper } from './SubscriptionCard/SubscriptionCardWrapper'
 import { SubscriptionCardTextWrapper } from './SubscriptionCard/SubscriptionCardTextWrapper'
 import { Product } from '@stripe/firestore-stripe-payments'
@@ -14,9 +13,6 @@ export const SubscriptionCarousel = ({
   selectedPlan,
   setSelectedPlan,
 }: Props) => {
-  // useEffect(() => {
-  //   console.log(selectedPlan)
-  // }, [selectedPlan])
   return (
     <section id="slider" className="relative mx-auto h-[234px] w-[225px]">
       <input type="radio" name="slider" id="s1" className="hidden" />

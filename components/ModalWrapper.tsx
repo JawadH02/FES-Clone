@@ -5,14 +5,14 @@ import { ModalContext } from '../context/ModalContext/ModalContext'
 import { SubscriptionModalContext } from '../context/SubscriptionModalContext/SubscriptionModalContext'
 import { Fade } from '@mui/material'
 
-interface ModalAuthProps {
+interface ModalWrapperProps {
   open: boolean
   type: string
   children: React.ReactNode
   img: string
 }
 
-export const ModalAuth = (props: ModalAuthProps) => {
+export const ModalWrapper = (props: ModalWrapperProps) => {
   const { open, type, children, img } = props
   const { setModal } = useContext(ModalContext)
   const { setSubscriptionModal } = useContext(SubscriptionModalContext)

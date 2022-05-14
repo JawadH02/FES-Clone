@@ -6,7 +6,7 @@ import { ProductsMetadata } from './index'
 
 export const SubscriptionModal = () => {
   const [products, setProducts] = useState<Product[] | void>([])
-  const [selectedPlan, setSelectedPlan] = useState<Product | null>(products![0])
+  const [selectedPlan, setSelectedPlan] = useState<Product | null>(products![1])
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -19,7 +19,8 @@ export const SubscriptionModal = () => {
       setProducts(products)
     }
     fetchProducts()
-  }, [])
+    
+  }, [selectedPlan])
   return (
     <div className="text-center">
       <div className="flex flex-col space-y-4">
@@ -31,6 +32,9 @@ export const SubscriptionModal = () => {
             Google, Apple, Atlassian, Canva
           </span>
           and more
+        </p>
+        <p className={`${selectedPlan ? 'opacity-0' : 'opacity-100'} text-red-400`}>
+          Please select a Plan
         </p>
         <div className="space-y-16">
           <div>

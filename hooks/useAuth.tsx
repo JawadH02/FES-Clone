@@ -43,27 +43,31 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const signUp = async (email: string, password: string) => {
     setLoading(true)
+    setError(null)
 
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         setUser(userCredential.user)
         router.push('/')
         setLoading(false)
+        setError(null)
       })
-      .catch((error) => console.log(error))
+      .catch((error) => setError(error.message))
       .finally(() => setLoading(false))
   }
 
   const signIn = async (email: string, password: string) => {
     setLoading(true)
+    setError(null)
 
     await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         setUser(userCredential.user)
         router.push('/')
         setLoading(false)
+        setError(null)
       })
-      .catch((error) => console.log(error))
+      .catch((error) => setError(error.message))
       .finally(() => setLoading(false))
   }
 

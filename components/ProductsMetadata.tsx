@@ -1,6 +1,8 @@
 import { Product } from '@stripe/firestore-stripe-payments'
 import React, { useEffect, useState } from 'react'
-import { ProductsMetadataLayout } from './index'
+import useAuth from '../hooks/useAuth'
+import { loadCheckout } from '../lib/stripe'
+import { ProductsMetadataLayout, Loader } from './index'
 
 interface Props {
   selectedPlan: Product | null
@@ -26,6 +28,8 @@ export const ProductsMetadata = ({ selectedPlan }: Props) => {
     privateVipDiscord: false,
     exclusiveEport: false,
   })
+  const [isBillingLoading, setBillingLoading] = useState(false)
+  const { user } = useAuth()
   useEffect(() => {
     const isPlanPerksIncluded = () => {
       const planName = selectedPlan?.name
@@ -75,16 +79,31 @@ export const ProductsMetadata = ({ selectedPlan }: Props) => {
     isPlanPerksIncluded()
   }, [selectedPlan])
 
+  const subscribeToPlan = () => {
+    if (!user || !selectedPlan) return
+
+    loadCheckout(selectedPlan?.prices[0].id!)
+    setBillingLoading(true)
+  }
+
   return (
     <div>
       <ul className="mx-auto flex w-full max-w-[250px] flex-col items-center space-y-2">
         <ProductsMetadataLayout currentPlanMetadata={currentPlanMetadata} />
       </ul>
       <div className="mt-5 space-y-5">
-        <button className="h-[60px] w-full max-w-[70%] rounded-[35px] bg-[#8A6EE8] bg-gradient-to-t from-[#a08afb] to-[#7353d6] px-6 text-[20px] font-semibold tracking-wider text-white shadow-md transition duration-300 ease-in-out hover:opacity-70">
-          CONTINUE
+        <button
+          disabled={isBillingLoading}
+          className={`h-[60px] w-full max-w-[70%] rounded-[35px] bg-[#8A6EE8] bg-gradient-to-t from-[#a08afb] to-[#7353d6] px-6 text-[20px] font-semibold tracking-wider text-white shadow-md transition duration-300 ease-in-out hover:opacity-70 ${
+            isBillingLoading && 'opacity-70'
+          }`}
+          onClick={subscribeToPlan}
+        >
+          {isBillingLoading ? <Loader color="dark:fill-white" /> : 'CONTINUE'}
         </button>
-        <p className='text-sm text-gray-500'>Your subscription can be cancelled at any time.</p>
+        <p className="text-sm text-gray-500">
+          Your subscription can be cancelled at any time.
+        </p>
       </div>
     </div>
   )

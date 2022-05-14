@@ -22,7 +22,7 @@ export const SubscriptionCardWrapper = ({
     <>
       <div
         className={`h-[30px] w-[224px] rounded-t-3xl ${
-          showCardTopBanner ? 'bg-[#896DE7]' : ''
+          showCardTopBanner ? 'bg-[#896DE7]' : 'opacity-0'
         }`}
       >
         <h1 className="font-semibold text-white">{title}</h1>
