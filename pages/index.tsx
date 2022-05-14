@@ -2,6 +2,8 @@ import Head from 'next/head'
 import { Display, Nav, Sidebar } from '../components/index'
 
 const Home = () => {
+  
+
   const data = [
     {
       nextLesson: '/introduction/motivation',

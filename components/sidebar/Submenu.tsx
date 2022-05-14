@@ -10,6 +10,12 @@ export const Submenu = ({ section }: Props) => {
   const [dropdown, setDropdown] = useState(false)
 
   const showSubnav = () => setDropdown(!dropdown)
+  const flipSectionArrowIconsOnClick =
+    section.subNav && dropdown
+      ? section.iconOpened && <section.iconOpened />
+      : section.subNav
+      ? section.iconClosed && <section.iconClosed />
+      : null
   return (
     <div>
       <ul className="px-1">
@@ -23,11 +29,7 @@ export const Submenu = ({ section }: Props) => {
               )}
               <div className="flex w-full items-center justify-between">
                 <span className="text-[16px]">{section.title}</span>
-                {section.subNav && dropdown
-                  ? section.iconOpened && <section.iconOpened />
-                  : section.subNav
-                  ? section.iconClosed && <section.iconClosed />
-                  : null}
+                {flipSectionArrowIconsOnClick}
               </div>
             </a>
           ) : (

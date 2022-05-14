@@ -3,6 +3,7 @@ interface SubscriptionCardWrapperProps {
   title: string
   billed: string
   img: string
+  selected: boolean
 }
 
 export const SubscriptionCardWrapper = ({
@@ -10,12 +11,18 @@ export const SubscriptionCardWrapper = ({
   title,
   billed,
   img,
+  selected,
 }: SubscriptionCardWrapperProps) => {
+  let showCardTopBanner = false
+  if (selected && title !== '') {
+    showCardTopBanner = true
+  }
+
   return (
     <>
       <div
-        className={`h-[30px] w-full rounded-t-3xl ${
-          title !== '' ? 'bg-[#896DE7]' : ''
+        className={`h-[30px] w-[224px] rounded-t-3xl ${
+          showCardTopBanner ? 'bg-[#896DE7]' : ''
         }`}
       >
         <h1 className="font-semibold text-white">{title}</h1>

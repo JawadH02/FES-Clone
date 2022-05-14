@@ -8,7 +8,7 @@ interface Props {
 export const DashboardCardList = ({ cardInfo }: Props) => {
 
   return (
-    <div>
+    <div className='mb-11'>
       <div className='space-y-4 p-5'>
         {cardInfo.map((card) => (
           <DashboardCard card={card} key={card.id} />
