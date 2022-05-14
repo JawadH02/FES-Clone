@@ -14,6 +14,7 @@ import { FiLogOut } from 'react-icons/fi'
 import { FaCrown } from 'react-icons/fa'
 import { SubscriptionModalContext } from '../context/SubscriptionModalContext/SubscriptionModalContext'
 import { useSubscription } from '../hooks/useSubscription'
+import Link from 'next/link'
 
 export const Nav = () => {
   const { sidebar, handleSidebar } = useSidebar()
@@ -98,12 +99,14 @@ export const Nav = () => {
             <div className={`opacity-0 ${accountModal ? 'opacity-100' : ''}`}>
               <Fade in={accountModal}>
                 <div className="accountModal">
-                  <button className="accountButton">
-                    <div className="accountModalSection group">
-                      <BsFillPersonFill className="accountModalIcon" />
-                      <div className="text-[16px]">Account</div>
-                    </div>
-                  </button>
+                  <Link href="/account">
+                    <button className="accountButton">
+                      <div className="accountModalSection group">
+                        <BsFillPersonFill className="accountModalIcon" />
+                        <div className="text-[16px]">Account</div>
+                      </div>
+                    </button>
+                  </Link>
                   <button className="accountButton" onClick={handleLogout}>
                     <div className="accountModalSection group">
                       <FiLogOut className="accountModalIcon" />
