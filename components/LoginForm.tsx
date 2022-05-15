@@ -55,11 +55,11 @@ export const LoginForm = () => {
           <p className="p-1 text-[13px] font-light text-orange-500">{error}</p>
         )}
         <button
-          disabled={loading}
+          // disabled={loading}
           className="mainBtn flex !w-full justify-center bg-[#7645d9] !py-2 text-sm font-semibold text-[#FFF] hover:opacity-60"
           onClick={() => setLogin(true)}
         >
-          {loading ? <Loader color="dark:fill-white" /> : 'Sign in'}
+          {'Sign in'}
         </button>
       </form>
       <div className="space-y-2">

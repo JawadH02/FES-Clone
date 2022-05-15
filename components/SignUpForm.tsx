@@ -17,8 +17,6 @@ export const SignUpForm = () => {
     useContext(ModalContext)
   const { signUp, error, loading } = useAuth()
 
-  console.log(loading)
-
   const {
     handleSubmit,
     register,
@@ -79,7 +77,7 @@ export const SignUpForm = () => {
           className="mainBtn flex !w-full justify-center bg-[#7645d9] !py-2 text-sm font-semibold text-[#FFF] hover:opacity-60"
           onClick={() => setRegisterUser(true)}
         >
-          {loading ? <Loader color="dark:fill-white" /> : 'Get Started!'}
+          {'Get Started!'}
         </button>
       </form>
       <div className="space-y-2">

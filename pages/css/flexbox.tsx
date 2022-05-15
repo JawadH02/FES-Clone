@@ -16,12 +16,13 @@ const Flexbox = () => {
       <Nav />
       <div className="flex">
         <Sidebar />
-        {data.map(({ title, description, freeVideo, nextLesson }) => (
+        {data.map(({ title, description, freeVideo, nextLesson }, index) => (
           <Display
             title={title}
             description={description}
             freeVideo={freeVideo}
             nextLesson={nextLesson}
+            key={index}
           />
         ))}
       </div>
