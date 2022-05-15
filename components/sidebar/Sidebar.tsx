@@ -18,12 +18,12 @@ export const Sidebar = () => {
         ))}
         <div className="fixed bottom-0 left-0 flex w-[200px] flex-col bg-[#FAF9FA]">
           <hr className="m-0 border-t-[0.5px] border-gray-300" />
-          <div className='flex flex-col items-center justify-center'>
+          <div className="flex flex-col items-center justify-center">
             <div className="mt-2 flex items-center justify-center space-x-2">
               <p className="text-sm font-light">Privacy</p>
               <p className="text-sm font-light">Terms</p>
             </div>
-            <p className="cursor-default py-2 text-sm font-light text-gray-700">
+            <p className="cursor-default overflow-hidden py-2 text-sm font-light text-gray-700">
               Frontend Simplified &copy; {new Date().getFullYear()}
             </p>
           </div>
