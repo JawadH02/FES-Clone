@@ -29,7 +29,7 @@ export const ModalWrapper = (props: ModalWrapperProps) => {
         open={open}
         onClose={(_, reason: 'backdropClick') => !reason}
         className={`relative ${
-          type === 'SubscriptionModal' ? '!top-20' : '!top-40'
+          type === 'SubscriptionModal' ? '!top-20' : '!top-20 md:!top-40'
         } left-0 right-0 z-50 mx-auto ${
           type === 'SubscriptionModal' ? 'max-w-[904px]' : 'max-w-[768px]'
         } overflow-hidden overflow-y-scroll rounded-md ${
@@ -49,7 +49,7 @@ export const ModalWrapper = (props: ModalWrapperProps) => {
               <XIcon className="h-6 w-6" />
             </button>
             <div className={`flex h-full justify-between bg-white`}>
-              <div className="w-full md:w-1/2">
+              <div className="w-full px-4 md:w-1/2 md:px-0">
                 <div
                   className={` mx-auto ${
                     type === 'SubscriptionModal' ? 'max-w-1/2' : 'max-w-[384px]'
