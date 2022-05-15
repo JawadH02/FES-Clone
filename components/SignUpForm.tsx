@@ -1,5 +1,5 @@
 import { TextInput, PasswordInput } from '@mantine/core'
-import React, { useCallback, useContext, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { LoginForm, Loader } from '../components/index'
 import { ModalContext } from '../context/ModalContext/ModalContext'
@@ -16,6 +16,8 @@ export const SignUpForm = () => {
   const { componentState, setComponentState, setModal } =
     useContext(ModalContext)
   const { signUp, error, loading } = useAuth()
+
+  console.log(loading)
 
   const {
     handleSubmit,
