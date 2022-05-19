@@ -2,10 +2,9 @@ import ReactPlayer from 'react-player/lazy'
 import { FaDiscord, FaAngleRight, FaLock } from 'react-icons/fa'
 import Link from 'next/link'
 import useAuth from '../../hooks/useAuth'
-import { useContext } from 'react'
-import { ModalContext } from '../../context/ModalContext/ModalContext'
 import { useRouter } from 'next/router'
 import { useSubscription } from '../../hooks/useSubscription'
+import { useModal } from '../../context/ModalContext/useModal'
 
 interface Props {
   title: string
@@ -21,7 +20,7 @@ export const Display = ({
   nextLesson,
 }: Props) => {
   const { user } = useAuth()
-  const { toggleSignUp, toggleSignIn } = useContext(ModalContext)
+  const { toggleSignUp, toggleSignIn } = useModal()
   const subscription = useSubscription(user)
   const router = useRouter()
 
@@ -43,7 +42,7 @@ export const Display = ({
               <div className="flex flex-col items-center space-y-2">
                 {!user && (
                   <div className="space-y-3">
-                    <div className='flex flex-col items-center space-y-3'>
+                    <div className="flex flex-col items-center space-y-3">
                       <FaLock className="text-4xl" />
                       <h1 className="text-2xl font-bold">Unlock this video</h1>
                     </div>
@@ -65,11 +64,11 @@ export const Display = ({
                   </div>
                 )}
                 {user && !subscription && (
-                  <div className='flex flex-col items-center space-y-2'>
-                  <FaLock className="text-4xl" />
-                  <h1 className="text-2xl font-bold">Unlock this video</h1>
-                  <h3>Become a Pro to watch this video!</h3>
-                </div>
+                  <div className="flex flex-col items-center space-y-2">
+                    <FaLock className="text-4xl" />
+                    <h1 className="text-2xl font-bold">Unlock this video</h1>
+                    <h3>Become a Pro to watch this video!</h3>
+                  </div>
                 )}
               </div>
             </div>

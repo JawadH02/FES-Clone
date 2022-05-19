@@ -2,7 +2,7 @@ import { TextInput, PasswordInput } from '@mantine/core'
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { LoginForm, Loader } from '../components/index'
-import { ModalContext } from '../context/ModalContext/ModalContext'
+import { useModal } from '../context/ModalContext/useModal'
 import useAuth from '../hooks/useAuth'
 
 interface Inputs {
@@ -13,8 +13,7 @@ interface Inputs {
 
 export const SignUpForm = () => {
   const [registerUser, setRegisterUser] = useState(false)
-  const { componentState, setComponentState, setModal } =
-    useContext(ModalContext)
+  const { toggleSignInComponentState, toggleModal } = useModal()
   const { signUp, error, loading } = useAuth()
 
   const {
@@ -33,13 +32,9 @@ export const SignUpForm = () => {
 
     reset()
     if (!error) {
-      setModal((prevState) => !prevState)
+      toggleModal()
     }
   }
-
-  const handleSignupClick = useCallback(() => {
-    setComponentState(<LoginForm />)
-  }, [componentState])
 
   return (
     <div className="space-y-2">
@@ -93,7 +88,7 @@ export const SignUpForm = () => {
           </h4>
           <button
             className="flex text-[12px] text-[#7645d9] underline"
-            onClick={handleSignupClick}
+            onClick={toggleSignInComponentState}
           >
             Log in
           </button>

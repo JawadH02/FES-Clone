@@ -53,7 +53,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         setLoading(false)
       })
       .catch((error) => setError(error.message))
-      .finally(() => setLoading(false))
+      .finally(() => {
+        setLoading(false)
+        setError(null)
+      })
   }
 
   const signIn = async (email: string, password: string) => {

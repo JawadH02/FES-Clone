@@ -1,9 +1,9 @@
 import MuiModal from '@mui/material/Modal'
 import { XIcon } from '@heroicons/react/outline'
 import { useContext } from 'react'
-import { ModalContext } from '../context/ModalContext/ModalContext'
 import { SubscriptionModalContext } from '../context/SubscriptionModalContext/SubscriptionModalContext'
 import { Fade } from '@mui/material'
+import { useModal } from '../context/ModalContext/useModal'
 
 interface ModalWrapperProps {
   open: boolean
@@ -14,13 +14,13 @@ interface ModalWrapperProps {
 
 export const ModalWrapper = (props: ModalWrapperProps) => {
   const { open, type, children, img } = props
-  const { setModal } = useContext(ModalContext)
+  const { toggleModal } = useModal()
   const { setSubscriptionModal } = useContext(SubscriptionModalContext)
 
   const handleClone = () => {
     type === 'SubscriptionModal'
       ? setSubscriptionModal((prevState) => !prevState)
-      : setModal((prevState) => !prevState)
+      : toggleModal()
   }
 
   return (

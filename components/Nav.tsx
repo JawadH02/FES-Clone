@@ -5,8 +5,6 @@ import { ModalWrapper } from '../components/index'
 import React, { useContext, useState } from 'react'
 import Avatar from '@mui/material/Avatar'
 import toast, { Toaster } from 'react-hot-toast'
-
-import { ModalContext } from '../context/ModalContext/ModalContext'
 import useAuth from '../hooks/useAuth'
 import Fade from '@mui/material/Fade'
 import { BsFillPersonFill } from 'react-icons/bs'
@@ -15,13 +13,13 @@ import { FaCrown } from 'react-icons/fa'
 import { SubscriptionModalContext } from '../context/SubscriptionModalContext/SubscriptionModalContext'
 import { useSubscription } from '../hooks/useSubscription'
 import Link from 'next/link'
+import { useModal } from '../context/ModalContext/useModal'
 
 export const Nav = () => {
   const { sidebar, handleSidebar } = useSidebar()
   const { user, logout } = useAuth()
   const [accountModal, setAccountModal] = useState(false)
-  const { componentState, modal, toggleSignUp, toggleSignIn } =
-    useContext(ModalContext)
+  const { getComponentState, getModal, toggleSignUp, toggleSignIn } = useModal()
   const { handleSubscriptionModal, subscriptionModal, SubscriptionModalState } =
     useContext(SubscriptionModalContext)
   const subscription = useSubscription(user)
@@ -119,11 +117,11 @@ export const Nav = () => {
           </div>
         )}
         <ModalWrapper
-          open={modal}
+          open={getModal()}
           type="AuthModal"
           img="https://frontendsimplified.com/_nuxt/img/Login%20Design.8235d38.jpg"
         >
-          {componentState}
+          {getComponentState()}
         </ModalWrapper>
       </div>
     </nav>

@@ -1,7 +1,7 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { SidebarProvider } from '../hooks/useSidebar'
-import { ModalContextProvider } from '../context/ModalContext/ModalContextProvider'
+import ModalProvider from '../context/ModalContext/useModal'
 import { AuthProvider } from '../hooks/useAuth'
 import { SubscriptionModalContextProvider } from '../context/SubscriptionModalContext/SubscriptionModalContextProvider'
 
@@ -9,11 +9,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <AuthProvider>
       <SubscriptionModalContextProvider>
-        <ModalContextProvider>
+        <ModalProvider>
           <SidebarProvider>
             <Component {...pageProps} />
           </SidebarProvider>
-        </ModalContextProvider>
+        </ModalProvider>
       </SubscriptionModalContextProvider>
     </AuthProvider>
   )
